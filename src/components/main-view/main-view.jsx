@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
@@ -7,11 +9,21 @@ export class MainView extends React.Component {
     constructor() {
     super();
     this.state = {
-      movies: [{ _id: 1, Title: 'Avatar', Description: 'A paraplegic Marine dispatched to the moon Pandora on a unique mission', ImagePath: 'https://m.media-amazon.com/images/I/51TIUdSaBUL._SY445_.jpg'},
-        { _id: 2, Title: 'Transformers', Description: 'An ancient struggle between two Cybertronian races', ImagePath: 'https://m.media-amazon.com/images/I/51REhA8e-gL._SY445_.jpg'},
-        { _id: 3, Title: 'Prometheus', Description: 'Following clues to the origin of mankind a team finds a structure', ImagePath: 'https://m.media-amazon.com/images/I/91mgd1UYdvL._SX342_.jpg'}],
+      movies: [],
       selectedMovie: null
     };
+  }
+
+componentDidMount(){
+    axios.get('https://moviesrule.herokuapp.com/movies')
+      .then(response => {
+        this.setState({
+          movies: response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   setSelectedMovie(newSelectedMovie) {
@@ -24,7 +36,7 @@ export class MainView extends React.Component {
     const { movies, selectedMovie } = this.state;
 
 
-    if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
+    if (movies.length === 0) return <div className="main-view"></div>;
 
     return (
       <div className="main-view">
