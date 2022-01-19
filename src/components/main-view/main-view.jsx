@@ -40,7 +40,9 @@ componentDidMount(){
   }
 
   render() {
-    const { movies, selectedMovie, user } = this.state;
+    const { movies, selectedMovie, user, registration } = this.state;
+
+    if (!registration) return (<RegistrationView onRegistration={(registration) => this.onRegistration(registration)} />);
 
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
