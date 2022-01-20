@@ -50,7 +50,8 @@ componentDidMount(){
     if (movies.length === 0) return <div className="main-view"></div>;
 
     return (
-      <div className="main-view">
+      <div className=
+      "main-view">
         {selectedMovie
           ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
           : movies.map(movie => (
