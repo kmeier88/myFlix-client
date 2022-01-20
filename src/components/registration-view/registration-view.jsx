@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export function LoginView(props) {
+export function RegistrationView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ email, setEmail ] = useState('');
